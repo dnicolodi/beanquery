@@ -1051,9 +1051,10 @@ class BQLParser(Parser):
                 'expecting one of: '
                 "'FALSE' 'NULL' 'TRUE'"
                 '([0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)'
-                '(\\"[^\\"]*\\"|\\\'[^\\\']*\\\')'
-                '(\\d{4}-\\d{2}-\\d{2}) <boolean> <date>'
-                '<decimal> <integer> <null> <string> \\d+'
+                '([0-9]{4}-[0-9]{2}-[0-9]{2})'
+                '(\\"[^\\"]*\\"|\\\'[^\\\']*\\\') <boolean> <date>'
+                '<decimal> <integer> <null> <string>'
+                '[0-9]+'
             )
 
     @tatsumasu('Constant')
@@ -1068,10 +1069,10 @@ class BQLParser(Parser):
                     'expecting one of: '
                     "'(' 'FALSE' 'NULL' 'TRUE'"
                     '([0-9]+\\.[0-9]*|[0-9]*\\.[0-9]+)'
-                    '(\\"[^\\"]*\\"|\\\'[^\\\']*\\\')'
-                    '(\\d{4}-\\d{2}-\\d{2}) <boolean> <date>'
+                    '([0-9]{4}-[0-9]{2}-[0-9]{2})'
+                    '(\\"[^\\"]*\\"|\\\'[^\\\']*\\\') <boolean> <date>'
                     '<decimal> <integer> <list> <literal>'
-                    '<null> <string> \\d+'
+                    '<null> <string> [0-9]+'
                 )
         self.name_last_node('value')
 
@@ -1132,7 +1133,7 @@ class BQLParser(Parser):
 
     @tatsumasu()
     def _integer_(self):  # noqa
-        self._pattern('\\d+')
+        self._pattern('[0-9]+')
 
     @tatsumasu()
     def _decimal_(self):  # noqa
@@ -1140,7 +1141,7 @@ class BQLParser(Parser):
 
     @tatsumasu()
     def _date_(self):  # noqa
-        self._pattern('(\\d{4}-\\d{2}-\\d{2})')
+        self._pattern('([0-9]{4}-[0-9]{2}-[0-9]{2})')
 
     @tatsumasu('Balances')
     def _balances_(self):  # noqa
