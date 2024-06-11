@@ -5,7 +5,7 @@ build-backend = 'setuptools.build_meta'
 [project]
 name = 'beanquery'
 version = '0.1.dev1'
-description = 'Beancount Query Language'
+description = 'Customizable light-weight SQL query tool'
 license = { file = 'LICENSE' }
 readme = 'README.md'
 authors = [
